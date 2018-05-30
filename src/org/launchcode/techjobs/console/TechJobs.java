@@ -56,18 +56,38 @@ public class TechJobs {
                 // How does the user want to search (e.g. by skill or employer)
                 String searchField = getUserSelection("Search by:", columnChoices);
 
+
                 // What is their search term?
                 System.out.println("\nSearch term: ");
                 String searchTerm = in.nextLine();
+                String noResults = ("0 results for keyword search: " + searchTerm );
+
+                String test = "position type";
+                String testtwo = "web";
+
+                 System.out.println(searchField + " : " + searchTerm);
+                System.out.println(test.equals(testtwo));
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
-                } else {
-                    printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+                    printJobs(JobData.findByValue(searchTerm));
+
+                } else {  printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+
+
+
+
+             /*   if (JobData.findByColumnAndValue(searchField, searchTerm).size() > 0)
+                {
+                        printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
+                    }
+                    else System.out.println(noResults); {*/
+
+                    }
+
                 }
-            }
+                }
         }
-    }
+
 
     // ﻿Returns the key of the selected item from the choices Dictionary
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
@@ -111,6 +131,20 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
-    }
+        //System.out.println("printJobs is not implemented yet");
+        for (HashMap<String, String> item : someJobs) {
+            for (String key: item.keySet()) {
+                String value = item.get(key);
+                {
+                    System.out.println(key + " : " + value);
+
+                }
+            } System.out.println("*****");
+        }
+        /*for (String item : someJobs) {
+
+            if (item.toLowerCase().contains(searchTerm.toLowerCase())) {
+                printJobs(JobData.findByColumnAndValue(searchField, searchTerm));*/
+
+            }
 }
